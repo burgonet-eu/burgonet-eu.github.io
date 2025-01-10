@@ -231,3 +231,61 @@
 </body>
 </html>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multilingual Page</title>
+    <style>
+        .lang-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+        .lang-switcher button {
+            padding: 5px 10px;
+            margin: 0 5px;
+            cursor: pointer;
+        }
+        .content {
+            margin: 50px;
+        }
+        [lang="fr"] {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="lang-switcher">
+        <button onclick="switchLanguage('en')">English</button>
+        <button onclick="switchLanguage('fr')">Français</button>
+    </div>
+
+    <div class="content">
+        <div lang="en">
+            <h1>Welcome to our website!</h1>
+            <p>This is the English version of our page.</p>
+        </div>
+        <div lang="fr">
+            <h1>Bienvenue sur notre site web !</h1>
+            <p>Ceci est la version française de notre page.</p>
+        </div>
+    </div>
+
+    <script>
+        function switchLanguage(lang) {
+            // Hide all language sections
+            document.querySelectorAll('.content > div').forEach(div => {
+                div.style.display = 'none';
+            });
+            
+            // Show selected language
+            document.querySelector(`.content > div[lang="${lang}"]`).style.display = 'block';
+        }
+
+        // Set default language to English
+        switchLanguage('en');
+    </script>
+</body>
+</html>
