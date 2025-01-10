@@ -110,6 +110,40 @@
             cursor: pointer;
         }
     </style>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const langElements = document.querySelectorAll('[data-lang]');
+            const contentElements = document.querySelectorAll('[data-en], [data-fr]');
+            
+            // Set initial language from localStorage or default to English
+            let currentLang = localStorage.getItem('lang') || 'en';
+            updateLanguage(currentLang);
+            
+            // Add click handlers to language switches
+            langElements.forEach(el => {
+                el.addEventListener('click', () => {
+                    const lang = el.dataset.lang;
+                    updateLanguage(lang);
+                    localStorage.setItem('lang', lang);
+                });
+            });
+            
+            function updateLanguage(lang) {
+                // Update language switch styling
+                langElements.forEach(el => {
+                    el.classList.toggle('active', el.dataset.lang === lang);
+                });
+                
+                // Update content visibility
+                contentElements.forEach(el => {
+                    if (el.dataset[lang]) {
+                        el.textContent = el.dataset[lang];
+                    }
+                    el.style.display = el.dataset[lang] ? 'block' : 'none';
+                });
+            }
+        });
+    </script>
 </head>
 <body>
     <!-- Navigation -->
