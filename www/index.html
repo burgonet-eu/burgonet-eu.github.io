@@ -5,6 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SecureAI Labs - Enterprise AI Infrastructure</title>
     <style>
+        /* Carousel Styles */
+        .carousel-section {
+            padding: 4rem 2rem;
+            background: white;
+            overflow: hidden;
+        }
+        .carousel {
+            max-width: 1200px;
+            margin: 0 auto;
+            overflow: hidden;
+            position: relative;
+        }
+        .carousel-track {
+            display: flex;
+            animation: scroll 20s linear infinite;
+        }
+        .carousel-slide {
+            flex: 0 0 33.33%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0 2rem;
+        }
+        .carousel-slide img {
+            max-width: 200px;
+            height: auto;
+            filter: grayscale(100%);
+            transition: filter 0.3s ease;
+        }
+        .carousel-slide img:hover {
+            filter: grayscale(0%);
+        }
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-100%); }
+        }
+
         body {
             font-family: system-ui, -apple-system, sans-serif;
             line-height: 1.6;
@@ -65,6 +102,16 @@
             cursor: pointer;
         }
     </style>
+    <script>
+        // Pause carousel on hover
+        const carouselTrack = document.querySelector('.carousel-track');
+        carouselTrack.addEventListener('mouseenter', () => {
+            carouselTrack.style.animationPlayState = 'paused';
+        });
+        carouselTrack.addEventListener('mouseleave', () => {
+            carouselTrack.style.animationPlayState = 'running';
+        });
+    </script>
 </head>
 <body>
     <!-- Navigation -->
@@ -117,6 +164,23 @@
                 <li>Access Control</li>
                 <li>Audit Trails</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Logo Carousel -->
+    <div class="carousel-section">
+        <div class="carousel">
+            <div class="carousel-track">
+                <div class="carousel-slide">
+                    <img src="images/nvidia-logo.png" alt="NVIDIA">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/european-parliament-logo.png" alt="European Parliament">
+                </div>
+                <div class="carousel-slide">
+                    <img src="images/european-commission-logo.png" alt="European Commission">
+                </div>
+            </div>
         </div>
     </div>
 
