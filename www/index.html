@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeuroForge - Enterprise AI Infrastructure</title>
+    <style>
+        :root {
+            --blue-dark: #003366;
+            --blue-light: #66CCFF;
+            --gray-dark: #333333;
+            --gray-light: #F5F5F5;
+            --white: #FFFFFF;
+            --green: #32CD32;
+        }
+        
+        body {
+            font-family: system-ui, -apple-system, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            color: var(--gray-dark);
+            background: var(--white);
+        }
+        
+        .nav {
+            background: var(--blue-dark);
+            padding: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .nav a {
+            color: var(--white);
+            text-decoration: none;
+            margin-left: 2rem;
+            transition: color 0.3s ease;
+        }
+        
+        .nav a:hover {
+            color: var(--blue-light);
+        }
+        
+        .hero {
+            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-light) 100%);
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+        }
+        
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 4rem 2rem;
+            background: var(--white);
+        }
+        
+        .feature-card {
+            padding: 2rem;
+            border: 1px solid var(--gray-light);
+            border-radius: 0.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            background: var(--white);
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .feature-card h3 {
+            color: var(--blue-dark);
+            border-bottom: 2px solid var(--blue-light);
+            padding-bottom: 0.5rem;
+        }
+        
+        .expertise-section {
+            background: var(--gray-light);
+            padding: 4rem 2rem;
+        }
+        
+        .expertise-section h2 {
+            color: var(--blue-dark);
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: var(--blue-dark);
+            color: var(--white);
+        }
+        
+        .button {
+            background: var(--green);
+            color: var(--white);
+            padding: 1rem 2rem;
+            border-radius: 0.25rem;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 1rem;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .button:hover {
+            background: #2db82d;
+            transform: translateY(-2px);
+        }
+        
+        .language-switch {
+            color: var(--white);
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border: 1px solid var(--blue-light);
+            border-radius: 4px;
+        }
+        
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+        
+        .stat-item {
+            padding: 2rem;
+            background: var(--white);
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .stat-number {
+            font-size: 2.5rem;
+            color: var(--blue-dark);
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div>
+            <img src="logo.png" alt="NeuroForge Logo" style="height: 40px;">
+            <strong style="color: var(--white); font-size: 1.5rem; margin-left: 0.5rem;">NeuroForge</strong>
+        </div>
+        <div>
+            <a href="#services">Services</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#contact">Contact</a>
+            <span class="language-switch">EN | FR</span>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div class="hero">
+        <h1>Secure Enterprise AI Infrastructure</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Deploy Large Language Models with confidence</p>
+        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
+            <a href="#contact" class="button">Get Started</a>
+        </div>
+    </div>
+
+    <!-- Statistics -->
+    <div class="stat-grid">
+        <div class="stat-item">
+            <div class="stat-number">100%</div>
+            <div>Secure Deployment</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div>Years Experience</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-number">24/7</div>
+            <div>Support Available</div>
+        </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features">
+        <div class="feature-card">
+            <h3>Infrastructure Design</h3>
+            <p>Custom AI infrastructure solutions tailored to your security and performance needs</p>
+            <ul style="color: var(--gray-dark);">
+                <li>GPU Cluster Setup</li>
+                <li>Network Architecture</li>
+                <li>Security Implementation</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>LLM Deployment</h3>
+            <p>End-to-end deployment of open-source language models</p>
+            <ul style="color: var(--gray-dark);">
+                <li>Model Selection</li>
+                <li>Fine-tuning</li>
+                <li>Production Deployment</li>
+            </ul>
+        </div>
+
+        <div class="feature-card">
+            <h3>Security & Compliance</h3>
+            <p>EU regulation-compliant AI systems</p>
+            <ul style="color: var(--gray-dark);">
+                <li>Data Privacy</li>
+                <li>Access Control</li>
+                <li>Audit Trails</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="cta-section">
+        <h2>Ready to secure your AI infrastructure?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Book a free consultation to discuss your needs</p>
+        <a href="#contact" class="button">Contact Us</a>
+    </div>
+</body>
+</html>
+
