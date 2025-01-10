@@ -3,149 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeuroForge - Enterprise AI Infrastructure</title>
+    <title>SecureAI Labs - Enterprise AI Infrastructure</title>
     <style>
-        :root {
-            --blue-dark: #003366;
-            --blue-light: #66CCFF;
-            --gray-dark: #333333;
-            --gray-light: #F5F5F5;
-            --white: #FFFFFF;
-            --green: #32CD32;
-        }
-        
         body {
             font-family: system-ui, -apple-system, sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            color: var(--gray-dark);
-            background: var(--white);
+            color: #1a1a1a;
         }
-        
         .nav {
-            background: var(--blue-dark);
+            background: #2d3748;
             padding: 1rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
         .nav a {
-            color: var(--white);
+            color: white;
             text-decoration: none;
             margin-left: 2rem;
-            transition: color 0.3s ease;
         }
-        
-        .nav a:hover {
-            color: var(--blue-light);
-        }
-        
         .hero {
-            background: linear-gradient(135deg, var(--blue-dark) 0%, var(--blue-light) 100%);
-            color: var(--white);
-            padding: 6rem 2rem;
+            background: #2d3748;
+            color: white;
+            padding: 4rem 2rem;
             text-align: center;
         }
-        
-        .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-        
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 2rem;
             padding: 4rem 2rem;
-            background: var(--white);
         }
-        
         .feature-card {
             padding: 2rem;
-            border: 1px solid var(--gray-light);
+            border: 1px solid #e2e8f0;
             border-radius: 0.5rem;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            background: var(--white);
         }
-        
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-        
-        .feature-card h3 {
-            color: var(--blue-dark);
-            border-bottom: 2px solid var(--blue-light);
-            padding-bottom: 0.5rem;
-        }
-        
         .expertise-section {
-            background: var(--gray-light);
+            background: #f7fafc;
             padding: 4rem 2rem;
         }
-        
-        .expertise-section h2 {
-            color: var(--blue-dark);
-            text-align: center;
-            margin-bottom: 2rem;
-        }
-        
         .cta-section {
             text-align: center;
             padding: 4rem 2rem;
-            background: var(--blue-dark);
-            color: var(--white);
+            background: #2d3748;
+            color: white;
         }
-        
         .button {
-            background: var(--green);
-            color: var(--white);
+            background: #4299e1;
+            color: white;
             padding: 1rem 2rem;
             border-radius: 0.25rem;
             text-decoration: none;
             display: inline-block;
             margin-top: 1rem;
-            transition: background-color 0.3s ease;
-            font-weight: bold;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
-        
-        .button:hover {
-            background: #2db82d;
-            transform: translateY(-2px);
-        }
-        
         .language-switch {
-            color: var(--white);
+            color: white;
             cursor: pointer;
-            padding: 0.5rem 1rem;
-            border: 1px solid var(--blue-light);
-            border-radius: 4px;
-        }
-        
-        .stat-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            text-align: center;
-            margin: 2rem 0;
-        }
-        
-        .stat-item {
-            padding: 2rem;
-            background: var(--white);
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-        }
-        
-        .stat-number {
-            font-size: 2.5rem;
-            color: var(--blue-dark);
-            font-weight: bold;
         }
     </style>
 </head>
@@ -153,40 +70,21 @@
     <!-- Navigation -->
     <nav class="nav">
         <div>
-            <img src="logo.png" alt="NeuroForge Logo" style="height: 40px;">
-            <strong style="color: var(--white); font-size: 1.5rem; margin-left: 0.5rem;" data-en="NeuroForge" data-fr="NeuroForge">NeuroForge</strong>
+            <strong style="color: white;">SecureAI Labs</strong>
         </div>
         <div>
-            <a href="#services" data-en="Services" data-fr="Services">Services</a>
-            <a href="#expertise" data-en="Expertise" data-fr="Expertise">Expertise</a>
-            <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
-            <span class="language-switch" onclick="switchLanguage()">EN | FR</span>
+            <a href="#services">Services</a>
+            <a href="#expertise">Expertise</a>
+            <a href="#contact">Contact</a>
+            <span class="language-switch">EN | FR</span>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <div class="hero">
-        <h1 data-en="Secure Enterprise AI Infrastructure" data-fr="Infrastructure IA d'Entreprise Sécurisée">Secure Enterprise AI Infrastructure</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;" data-en="Deploy Large Language Models with confidence" data-fr="Déployez des modèles de langage en toute confiance">Deploy Large Language Models with confidence</p>
-        <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
-            <a href="#contact" class="button">Get Started</a>
-        </div>
-    </div>
-
-    <!-- Statistics -->
-    <div class="stat-grid">
-        <div class="stat-item">
-            <div class="stat-number">100%</div>
-            <div>Secure Deployment</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">15+</div>
-            <div>Years Experience</div>
-        </div>
-        <div class="stat-item">
-            <div class="stat-number">24/7</div>
-            <div>Support Available</div>
-        </div>
+        <h1>Secure Enterprise AI Infrastructure</h1>
+        <p>Deploy Large Language Models with confidence</p>
+        <p>Security • Compliance • Sovereignty</p>
     </div>
 
     <!-- Features -->
@@ -194,7 +92,7 @@
         <div class="feature-card">
             <h3>Infrastructure Design</h3>
             <p>Custom AI infrastructure solutions tailored to your security and performance needs</p>
-            <ul style="color: var(--gray-dark);">
+            <ul>
                 <li>GPU Cluster Setup</li>
                 <li>Network Architecture</li>
                 <li>Security Implementation</li>
@@ -204,7 +102,7 @@
         <div class="feature-card">
             <h3>LLM Deployment</h3>
             <p>End-to-end deployment of open-source language models</p>
-            <ul style="color: var(--gray-dark);">
+            <ul>
                 <li>Model Selection</li>
                 <li>Fine-tuning</li>
                 <li>Production Deployment</li>
@@ -212,45 +110,44 @@
         </div>
 
         <div class="feature-card">
-            <h3 data-en="Security &amp; Compliance" data-fr="Sécurité &amp; Conformité">Security &amp; Compliance</h3>
-            <p data-en="EU regulation-compliant AI systems" data-fr="Systèmes IA conformes aux régulations UE">EU regulation-compliant AI systems</p>
-            <ul style="color: var(--gray-dark);">
-                <li data-en="Data Privacy" data-fr="Protection des données">Data Privacy</li>
-                <li data-en="Access Control" data-fr="Contrôle d'accès">Access Control</li>
-                <li data-en="Audit Trails" data-fr="Traces d'audit">Audit Trails</li>
+            <h3>Security & Compliance</h3>
+            <p>EU regulation-compliant AI systems</p>
+            <ul>
+                <li>Data Privacy</li>
+                <li>Access Control</li>
+                <li>Audit Trails</li>
             </ul>
+        </div>
+    </div>
+
+    <!-- Expertise Section -->
+    <div class="expertise-section">
+        <h2>Our Expertise</h2>
+        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;">
+            <div>
+                <h3>Technical Excellence</h3>
+                <ul>
+                    <li>NVIDIA Certified Professional</li>
+                    <li>MLOps Architecture</li>
+                    <li>Cybersecurity Expert</li>
+                </ul>
+            </div>
+            <div>
+                <h3>Industry Experience</h3>
+                <ul>
+                    <li>European Parliament AI Projects</li>
+                    <li>Enterprise Consulting</li>
+                    <li>Research Laboratory Management</li>
+                </ul>
+            </div>
         </div>
     </div>
 
     <!-- Call to Action -->
     <div class="cta-section">
-        <h2 data-en="Ready to secure your AI infrastructure?" data-fr="Prêt à sécuriser votre infrastructure IA ?">Ready to secure your AI infrastructure?</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;" data-en="Book a free consultation to discuss your needs" data-fr="Réservez une consultation gratuite pour discuter de vos besoins">Book a free consultation to discuss your needs</p>
-        <a href="#contact" class="button" data-en="Contact Us" data-fr="Contactez-nous">Contact Us</a>
+        <h2>Ready to secure your AI infrastructure?</h2>
+        <p>Book a free consultation to discuss your needs</p>
+        <a href="#contact" class="button">Contact Us</a>
     </div>
-
-    <script>
-        let currentLang = 'en';
-
-        function switchLanguage() {
-            currentLang = currentLang === 'en' ? 'fr' : 'en';
-            document.documentElement.lang = currentLang;
-            
-            // Update all elements with data attributes
-            document.querySelectorAll('[data-en], [data-fr]').forEach(element => {
-                if (element.dataset[currentLang]) {
-                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
-                        element.value = element.dataset[currentLang];
-                    } else {
-                        element.textContent = element.dataset[currentLang];
-                    }
-                }
-            });
-            
-            // Update language switch text
-            const langSwitch = document.querySelector('.language-switch');
-            langSwitch.textContent = currentLang === 'en' ? 'EN | FR' : 'FR | EN';
-        }
-    </script>
 </body>
 </html>
