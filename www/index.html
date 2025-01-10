@@ -154,20 +154,20 @@
     <nav class="nav">
         <div>
             <img src="logo.png" alt="NeuroForge Logo" style="height: 40px;">
-            <strong style="color: var(--white); font-size: 1.5rem; margin-left: 0.5rem;">NeuroForge</strong>
+            <strong style="color: var(--white); font-size: 1.5rem; margin-left: 0.5rem;" data-en="NeuroForge" data-fr="NeuroForge">NeuroForge</strong>
         </div>
         <div>
-            <a href="#services">Services</a>
-            <a href="#expertise">Expertise</a>
-            <a href="#contact">Contact</a>
-            <span class="language-switch">EN | FR</span>
+            <a href="#services" data-en="Services" data-fr="Services">Services</a>
+            <a href="#expertise" data-en="Expertise" data-fr="Expertise">Expertise</a>
+            <a href="#contact" data-en="Contact" data-fr="Contact">Contact</a>
+            <span class="language-switch" onclick="switchLanguage()">EN | FR</span>
         </div>
     </nav>
 
     <!-- Hero Section -->
     <div class="hero">
-        <h1>Secure Enterprise AI Infrastructure</h1>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Deploy Large Language Models with confidence</p>
+        <h1 data-en="Secure Enterprise AI Infrastructure" data-fr="Infrastructure IA d'Entreprise Sécurisée">Secure Enterprise AI Infrastructure</h1>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;" data-en="Deploy Large Language Models with confidence" data-fr="Déployez des modèles de langage en toute confiance">Deploy Large Language Models with confidence</p>
         <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 2rem;">
             <a href="#contact" class="button">Get Started</a>
         </div>
@@ -212,80 +212,45 @@
         </div>
 
         <div class="feature-card">
-            <h3>Security & Compliance</h3>
-            <p>EU regulation-compliant AI systems</p>
+            <h3 data-en="Security & Compliance" data-fr="Sécurité & Conformité">Security & Compliance</h3>
+            <p data-en="EU regulation-compliant AI systems" data-fr="Systèmes IA conformes aux régulations UE">EU regulation-compliant AI systems</p>
             <ul style="color: var(--gray-dark);">
-                <li>Data Privacy</li>
-                <li>Access Control</li>
-                <li>Audit Trails</li>
+                <li data-en="Data Privacy" data-fr="Protection des données">Data Privacy</li>
+                <li data-en="Access Control" data-fr="Contrôle d'accès">Access Control</li>
+                <li data-en="Audit Trails" data-fr="Traces d'audit">Audit Trails</li>
             </ul>
         </div>
     </div>
 
     <!-- Call to Action -->
     <div class="cta-section">
-        <h2>Ready to secure your AI infrastructure?</h2>
-        <p style="font-size: 1.2rem; margin-bottom: 2rem;">Book a free consultation to discuss your needs</p>
-        <a href="#contact" class="button">Contact Us</a>
-    </div>
-</body>
-</html>
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multilingual Page</title>
-    <style>
-        .lang-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-        }
-        .lang-switcher button {
-            padding: 5px 10px;
-            margin: 0 5px;
-            cursor: pointer;
-        }
-        .content {
-            margin: 50px;
-        }
-        [lang="fr"] {
-            display: none;
-        }
-    </style>
-</head>
-<body>
-    <div class="lang-switcher">
-        <button onclick="switchLanguage('en')">English</button>
-        <button onclick="switchLanguage('fr')">Français</button>
-    </div>
-
-    <div class="content">
-        <div lang="en">
-            <h1>Welcome to our website!</h1>
-            <p>This is the English version of our page.</p>
-        </div>
-        <div lang="fr">
-            <h1>Bienvenue sur notre site web !</h1>
-            <p>Ceci est la version française de notre page.</p>
-        </div>
+        <h2 data-en="Ready to secure your AI infrastructure?" data-fr="Prêt à sécuriser votre infrastructure IA ?">Ready to secure your AI infrastructure?</h2>
+        <p style="font-size: 1.2rem; margin-bottom: 2rem;" data-en="Book a free consultation to discuss your needs" data-fr="Réservez une consultation gratuite pour discuter de vos besoins">Book a free consultation to discuss your needs</p>
+        <a href="#contact" class="button" data-en="Contact Us" data-fr="Contactez-nous">Contact Us</a>
     </div>
 
     <script>
-        function switchLanguage(lang) {
-            // Hide all language sections
-            document.querySelectorAll('.content > div').forEach(div => {
-                div.style.display = 'none';
+        let currentLang = 'en';
+
+        function switchLanguage() {
+            currentLang = currentLang === 'en' ? 'fr' : 'en';
+            document.documentElement.lang = currentLang;
+            
+            // Update all elements with data attributes
+            document.querySelectorAll('[data-en], [data-fr]').forEach(element => {
+                if (element.dataset[currentLang]) {
+                    if (element.tagName === 'INPUT' || element.tagName === 'TEXTAREA') {
+                        element.value = element.dataset[currentLang];
+                    } else {
+                        element.textContent = element.dataset[currentLang];
+                    }
+                }
             });
             
-            // Show selected language
-            document.querySelector(`.content > div[lang="${lang}"]`).style.display = 'block';
+            // Update language switch text
+            const langSwitch = document.querySelector('.language-switch');
+            langSwitch.textContent = currentLang === 'en' ? 'EN | FR' : 'FR | EN';
         }
-
-        // Set default language to English
-        switchLanguage('en');
     </script>
 </body>
 </html>
