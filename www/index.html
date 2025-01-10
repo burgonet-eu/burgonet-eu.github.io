@@ -119,7 +119,44 @@
         }
     </style>
     <script>
+        const llmProviders = [
+            {
+                name: "Hugging Face",
+                logo: "images/huggingface-logo.png"
+            },
+            {
+                name: "Mistral AI",
+                logo: "images/mistral-logo.png"
+            },
+            {
+                name: "DeepSeek",
+                logo: "images/deepseek-logo.png"
+            },
+            {
+                name: "Microsoft",
+                logo: "images/microsoft-logo.png"
+            },
+            {
+                name: "LLaMA",
+                logo: "images/llama-logo.png"
+            },
+            {
+                name: "Falcon",
+                logo: "images/falcon-logo.png"
+            }
+        ];
+
+        function renderCarousel() {
+            const carousel = document.getElementById('llm-carousel');
+            carousel.innerHTML = llmProviders.map(provider => `
+                <div class="carousel-slide">
+                    <img src="${provider.logo}" alt="${provider.name}">
+                </div>
+            `).join('');
+        }
+
         document.addEventListener('DOMContentLoaded', function() {
+            renderCarousel();
             const langElements = document.querySelectorAll('[data-lang]');
             const contentElements = document.querySelectorAll('[data-en], [data-fr]');
             
@@ -266,26 +303,7 @@
     <!-- Open Source LLM Providers Carousel -->
     <div class="carousel-section" style="background: #f7fafc;">
         <h2 class="carousel-title" data-en="Open Source LLM Providers" data-fr="Fournisseurs de LLM Open Source">Open Source LLM Providers</h2>
-        <div class="carousel">
-            <div class="carousel-slide">
-                <img src="images/huggingface-logo.png" alt="Hugging Face">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/mistral-logo.png" alt="Mistral AI">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/deepseek-logo.png" alt="DeepSeek">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/microsoft-logo.png" alt="Microsoft">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/llama-logo.png" alt="LLaMA">
-            </div>
-            <div class="carousel-slide">
-                <img src="images/falcon-logo.png" alt="Falcon">
-            </div>
-        </div>
+        <div class="carousel" id="llm-carousel"></div>
     </div>
 
 
