@@ -55,6 +55,8 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="./">Screenshots</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#log-example">Log example</a>
+    </li>
     </ul>
                 </li>
               </ul>
@@ -88,7 +90,27 @@
                 <h1 id="walk-the-talk">Walk the talk</h1>
 <p><img alt="image-20250114074616217" src="../img/screenshots/image-20250114074616217.png" /></p>
 <p><img alt="image-20250114074719185" src="../img/screenshots/image-20250114074719185.png" /></p>
-<p><img alt="image-20250114074829234" src="../img/screenshots/image-20250114074829234.png" /></p>
+<p><img alt="image-20250114110743398" src="../img/screenshots/image-20250114110743398.png" /></p>
+<h2 id="log-example">Log example</h2>
+<pre><code class="language-json">{
+  &quot;time_local&quot;: &quot;14/Jan/2025:10:39:43 +0000&quot;,
+  &quot;remote_addr&quot;: &quot;192.168.65.1&quot;,
+  &quot;remote_user&quot;: &quot;&quot;,
+  &quot;request&quot;: &quot;POST /api.deepseek.com/v3/chat/completions HTTP/1.1&quot;,
+  &quot;status&quot;: &quot;200&quot;,
+  &quot;body_bytes_sent&quot;: &quot;440&quot;,
+  &quot;request_time&quot;: &quot;1.694&quot;,
+  &quot;http_referrer&quot;: &quot;&quot;,
+  &quot;http_user_agent&quot;: &quot;curl/8.7.1&quot;,
+  &quot;http_x_forwarded_for&quot;: &quot;&quot;,
+  &quot;host&quot;: &quot;localhost&quot;,
+  &quot;upstream_addr&quot;: &quot;104.18.27.90:443&quot;,
+  &quot;request_method&quot;: &quot;POST&quot;,
+  &quot;http_version&quot;: &quot;HTTP/1.1&quot;,
+  &quot;request_body&quot;: &quot;{\n        \&quot;model\&quot;: \&quot;deepseek-chat\&quot;,\n        \&quot;messages\&quot;: [\n          {\&quot;role\&quot;: \&quot;system\&quot;, \&quot;content\&quot;: \&quot;You are a helpful assistant.\&quot;},\n          {\&quot;role\&quot;: \&quot;user\&quot;, \&quot;content\&quot;: \&quot;Hello\&quot;}\n        ],\n        \&quot;stream\&quot;: false\n      }&quot;,
+  &quot;response_body&quot;: &quot;{\&quot;id\&quot;:\&quot;2c1081cc-b38a-4736-95cd-4c96981ea079\&quot;,\&quot;object\&quot;:\&quot;chat.completion\&quot;,\&quot;created\&quot;:1736851181,\&quot;model\&quot;:\&quot;deepseek-chat\&quot;,\&quot;choices\&quot;:[{\&quot;index\&quot;:0,\&quot;message\&quot;:{\&quot;role\&quot;:\&quot;assistant\&quot;,\&quot;content\&quot;:\&quot;Hello! How can I assist you today? 😊\&quot;},\&quot;logprobs\&quot;:null,\&quot;finish_reason\&quot;:\&quot;stop\&quot;}],\&quot;usage\&quot;:{\&quot;prompt_tokens\&quot;:10,\&quot;completion_tokens\&quot;:11,\&quot;total_tokens\&quot;:21,\&quot;prompt_cache_hit_tokens\&quot;:0,\&quot;prompt_cache_miss_tokens\&quot;:10},\&quot;system_fingerprint\&quot;:\&quot;fp_3a5770e1b4\&quot;}&quot;
+}
+</code></pre>
               
             </div>
           </div><footer>
