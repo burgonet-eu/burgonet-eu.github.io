@@ -113,6 +113,27 @@
 <h2 id="use-case-restrict-keywords">Use case: restrict keywords</h2>
 <pre><code>⚠️ Implemented, to be documented
 </code></pre>
+<h2 id="use-case-prevent-leakage-of-personal-idenfier-information-leak">Use case: prevent leakage of personal idenfier &amp; information leak</h2>
+<pre><code class="language-bash">curl http://127.0.0.1:8080/ollama/gemma2/2b/ -i  \
+-H &quot;Authorization: Bearer your-token-here&quot; \
+-d '{
+  &quot;model&quot;: &quot;gemma2:2b-instruct-q6_K&quot;,                                                                                                                        &quot;messages&quot;: [
+    {
+      &quot;role&quot;: &quot;user&quot;,
+      &quot;content&quot;: &quot;Hi my name is Jean-Claude Dusse&quot;
+    }
+  ] ,
+  &quot;stream&quot;: false
+}'
+HTTP/1.1 403 Forbidden
+Server: openresty/1.21.4.1
+Date: Thu, 16 Jan 2025 13:01:06 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+Request contains sensitive personal information
+</code></pre>
               
             </div>
           </div><footer>
@@ -161,5 +182,5 @@
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-01-15 15:34:53.117399+00:00
+Build Date UTC : 2025-01-16 13:02:56.108891+00:00
 -->
