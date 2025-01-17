@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Walk the talk - Burgonet Gateway Documentation</title>
+    <title>Getting Started - Burgonet Gateway Documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Walk the talk";
-        var mkdocs_page_input_path = "screenshots.md";
+        var mkdocs_page_name = "Getting Started";
+        var mkdocs_page_input_path = "getting-started.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -51,8 +51,16 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Getting Started</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#installation">Installation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#first-steps">First Steps</a>
+    </li>
+    </ul>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
@@ -96,7 +104,7 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">Walk the talk</li>
+      <li class="breadcrumb-item active">Getting Started</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -105,38 +113,64 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="walk-the-talk">Walk the talk</h1>
-<p><img alt="image-20250114074616217" src="../img/screenshots/image-20250114074616217.png" /></p>
-<p><img alt="image-20250114074719185" src="../img/screenshots/image-20250114074719185.png" /></p>
-<p><img alt="image-20250114110743398" src="../img/screenshots/image-20250114110743398.png" /></p>
-<p><img alt="image-20250116135914752" src="../img/screenshots/image-20250116135914752.png" /></p>
-<h2 id="log-example">Log example</h2>
-<pre><code class="language-json">{
-  &quot;time_local&quot;: &quot;14/Jan/2025:11:06:14 +0000&quot;,
-  &quot;remote_addr&quot;: &quot;192.168.65.1&quot;,
-  &quot;remote_user&quot;: &quot;&quot;,
-  &quot;request&quot;: &quot;POST /api.deepseek.com/v3/chat/completions HTTP/1.1&quot;,
-  &quot;status&quot;: &quot;200&quot;,
-  &quot;body_bytes_sent&quot;: &quot;440&quot;,
-  &quot;request_time&quot;: &quot;1.977&quot;,
-  &quot;http_referrer&quot;: &quot;&quot;,
-  &quot;http_user_agent&quot;: &quot;curl/8.7.1&quot;,
-  &quot;http_x_forwarded_for&quot;: &quot;&quot;,
-  &quot;host&quot;: &quot;localhost&quot;,
-  &quot;authorization&quot;: &quot;Bearer your-token-here&quot;,
-  &quot;upstream_addr&quot;: &quot;104.18.27.90:443&quot;,
-  &quot;request_method&quot;: &quot;POST&quot;,
-  &quot;http_version&quot;: &quot;HTTP/1.1&quot;,
-  &quot;request_body&quot;: &quot;{\n        \&quot;model\&quot;: \&quot;deepseek-chat\&quot;,\n        \&quot;messages\&quot;: [\n          {\&quot;role\&quot;: \&quot;system\&quot;, \&quot;content\&quot;: \&quot;You are a helpful assistant.\&quot;},\n          {\&quot;role\&quot;: \&quot;user\&quot;, \&quot;content\&quot;: \&quot;Hello\&quot;}\n        ],\n        \&quot;stream\&quot;: false\n      }&quot;,
-  &quot;response_body&quot;: &quot;{\&quot;id\&quot;:\&quot;08118b43-3ec7-4691-b3c9-91bb5e1cbe23\&quot;,\&quot;object\&quot;:\&quot;chat.completion\&quot;,\&quot;created\&quot;:1736852773,\&quot;model\&quot;:\&quot;deepseek-chat\&quot;,\&quot;choices\&quot;:[{\&quot;index\&quot;:0,\&quot;message\&quot;:{\&quot;role\&quot;:\&quot;assistant\&quot;,\&quot;content\&quot;:\&quot;Hello! How can I assist you today? 😊\&quot;},\&quot;logprobs\&quot;:null,\&quot;finish_reason\&quot;:\&quot;stop\&quot;}],\&quot;usage\&quot;:{\&quot;prompt_tokens\&quot;:10,\&quot;completion_tokens\&quot;:11,\&quot;total_tokens\&quot;:21,\&quot;prompt_cache_hit_tokens\&quot;:0,\&quot;prompt_cache_miss_tokens\&quot;:10},\&quot;system_fingerprint\&quot;:\&quot;fp_3a5770e1b4\&quot;}&quot;,
-  &quot;provider&quot;: &quot;deepseek&quot;,
-  &quot;model_name&quot;: &quot;deepseek&quot;,
-  &quot;model_version&quot;: &quot;v3&quot;
-}
+                <h1 id="getting-started-with-burgonet-gateway">Getting Started with Burgonet Gateway</h1>
+<h2 id="installation">Installation</h2>
+<ol>
+<li>Clone the repository:</li>
+</ol>
+<pre><code class="language-bash">git clone https://github.com/your-repo/burgonet-gateway.git
+cd burgonet-gateway
 </code></pre>
+<ol>
+<li>Install dependencies:</li>
+</ol>
+<pre><code class="language-bash">pip install -r requirements.txt
+</code></pre>
+<ol>
+<li>
+<p>Configure the application by editing <code>frontend/app/config.py</code></p>
+</li>
+<li>
+<p>Run the application:</p>
+</li>
+</ol>
+<pre><code class="language-bash">python wsgi.py
+</code></pre>
+<h2 id="configuration">Configuration</h2>
+<p>The main configuration file is located at <code>frontend/app/config.py</code>.</p>
+<p>Key settings include:</p>
+<ul>
+<li><strong>LDAP</strong>: Authentication and user management</li>
+<li><strong>Redis</strong>: Token storage and caching</li>
+<li><strong>Nginx</strong>: Proxy configuration</li>
+<li><strong>Security</strong>: Secret keys and access controls</li>
+</ul>
+<p>Example configuration:</p>
+<pre><code class="language-python"># LDAP Settings
+LDAP_HOST = 'ldap://localhost'
+LDAP_BASE_DN = 'dc=mycompany,dc=com'
+
+# Redis Settings
+REDIS_HOST = 'localhost'
+REDIS_PORT = 6379
+
+# Security
+SECRET_KEY = 'your-secret-key-here'
+</code></pre>
+<h2 id="first-steps">First Steps</h2>
+<ol>
+<li>Configure your LDAP integration</li>
+<li>Set up model providers</li>
+<li>Configure user groups and permissions</li>
+<li>Set up monitoring and alerts</li>
+</ol>
               
             </div>
           </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../use-cases/" class="btn btn-neutral float-right" title="Use Cases">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
 
   <hr/>
 
@@ -158,6 +192,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../use-cases/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
