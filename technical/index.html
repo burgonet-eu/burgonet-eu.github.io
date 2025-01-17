@@ -66,6 +66,8 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#system-components">System Components</a>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#request-flow">Request Flow</a>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="#core-concepts">Core Concepts</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nginx-integration">NGINX Integration</a>
@@ -110,16 +112,34 @@
 <h1 id="technical-architecture">Technical Architecture</h1>
 <h2 id="system-components">System Components</h2>
 <div class="mermaid">graph TD
-    A[User] --&gt;|Authenticates| B(LDAP)
-    B --&gt; C[Redis]
-    C --&gt; D[NGINX]
-    D --&gt; E{Model Providers}
-    E --&gt; F[OpenAI]
-    E --&gt; G[DeepSeek]
-    E --&gt; H[Ollama]
-    E --&gt; I[Azure]
-    D --&gt; J[Logging]
+    A[User] --&gt;|Bearer| D[NGINX]
+    D &lt;--&gt; C((Redis))    
+    D &lt;--&gt; E{Model Providers}
+    E &lt;--&gt; F[OpenAI]
+    E &lt;--&gt; G[DeepSeek]
+    E &lt;--&gt; H[Ollama]
+    E &lt;--&gt; I[Azure]
+    D &lt;--&gt; J[Logging]
     J --&gt; K[Audit System]
+
+    style D fill:#FFA500,color:#000
+    style E fill:#AAAAAA,color:#000
+</div>
+<h2 id="request-flow">Request Flow</h2>
+<div class="mermaid">sequenceDiagram
+    participant User
+    participant NGINX
+    participant Redis
+    participant Provider
+    participant Burgonet
+
+    User-&gt;&gt;NGINX: API Request
+    NGINX-&gt;&gt;Redis: Check access (token validity, quotas, etc.)
+    Redis--&gt;&gt;NGINX: Access status
+    NGINX-&gt;&gt;Provider: Forward request
+    Provider--&gt;&gt;NGINX: Response
+    NGINX-&gt;&gt;Burgonet: Log request via syslog
+    NGINX--&gt;&gt;User: Return response
 </div>
 <h2 id="core-concepts">Core Concepts</h2>
 <div class="mermaid">classDiagram
