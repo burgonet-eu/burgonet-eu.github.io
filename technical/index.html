@@ -51,6 +51,10 @@
 <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
 </li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../screenshots/">Screenshots</a>
+</li>
+</ul>
 <p class="caption"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../use-cases/">Use Cases</a>
@@ -66,9 +70,9 @@
 <ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="#system-components">System Components</a>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#request-flow">Request Flow</a>
-</li>
 <li class="toctree-l2"><a class="reference internal" href="#core-concepts">Core Concepts</a>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#request-flow">Request Flow</a>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#nginx-integration">NGINX Integration</a>
 </li>
@@ -112,34 +116,18 @@
 <h1 id="technical-architecture">Technical Architecture</h1>
 <h2 id="system-components">System Components</h2>
 <div class="mermaid">graph TD
-    A[User] --&gt;|Bearer| D[NGINX]
-    D &lt;--&gt; C((Redis))    
-    D &lt;--&gt; E{Model Providers}
-    E &lt;--&gt; F[OpenAI]
-    E &lt;--&gt; G[DeepSeek]
-    E &lt;--&gt; H[Ollama]
-    E &lt;--&gt; I[Azure]
-    D &lt;--&gt; J[Logging]
+    A[User] --&gt;|Authenticates| B(LDAP)
+    B --&gt; C[Redis]
+    C --&gt; D[NGINX]
+    D --&gt; E{Model Providers}
+    E --&gt; F[OpenAI]
+    E --&gt; G[DeepSeek]
+    E --&gt; H[Ollama]
+    E --&gt; I[Azure]
+    D --&gt; J[Logging]
     J --&gt; K[Audit System]
 
-    style D fill:#FFA500,color:#000
-    style E fill:#AAAAAA,color:#000
-</div>
-<h2 id="request-flow">Request Flow</h2>
-<div class="mermaid">sequenceDiagram
-    participant User
-    participant NGINX
-    participant Redis
-    participant Provider
-    participant Burgonet
 
-    User-&gt;&gt;NGINX: API Request
-    NGINX-&gt;&gt;Redis: Check access (token validity, quotas, etc.)
-    Redis--&gt;&gt;NGINX: Access status
-    NGINX-&gt;&gt;Provider: Forward request
-    Provider--&gt;&gt;NGINX: Response
-    NGINX-&gt;&gt;Burgonet: Log request via syslog
-    NGINX--&gt;&gt;User: Return response
 </div>
 <h2 id="core-concepts">Core Concepts</h2>
 <div class="mermaid">classDiagram
@@ -178,6 +166,24 @@
     Group "1" *-- "many" User : contains
     User "1" *-- "many" Token : manages
     Route "1" *-- "many" Group : disables access for
+</div>
+<h2 id="request-flow">Request Flow</h2>
+<div class="mermaid">sequenceDiagram
+    participant User
+    participant NGINX
+    participant Redis
+    participant Auth
+    participant Provider
+
+    User-&gt;&gt;NGINX: API Request
+    NGINX-&gt;&gt;Redis: Check token validity
+    Redis--&gt;&gt;NGINX: Token status
+    NGINX-&gt;&gt;Auth: Validate permissions
+    Auth--&gt;&gt;NGINX: Permission status
+    NGINX-&gt;&gt;Provider: Forward request
+    Provider--&gt;&gt;NGINX: Response
+    NGINX-&gt;&gt;Redis: Log request
+    NGINX--&gt;&gt;User: Return response
 </div>
 <h2 id="nginx-integration">NGINX Integration</h2>
 <pre><code>log_format bgn_combined escape=json '{' '"time_local":"$time_local",' '"remote_addr":"$remote_addr",' '"remote_user":"$remote_user",' '"request":"$request",' '"status": "$status",' '"body_bytes_sent":"$body_bytes_sent",' '"request_time":"$request_time",' '"http_referrer":"$http_referer",' '"http_user_agent":"$http_user_agent",' '"http_x_forwarded_for":"$http_x_forwarded_for",' '"host":"$host",' '"upstream_addr":"$upstream_addr",' '"request_method":"$request_method",' '"http_version":"$server_protocol",' '"request_body":"$request_body",' '"response_body":"$resp_body",' '"provider":"$provider",' '"model_name":"$model_name",' '"model_version":"$model_version"' '}';
