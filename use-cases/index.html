@@ -51,14 +51,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../screenshots/">Screenshots</a>
-                </li>
-              </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Use Cases</a>
@@ -82,14 +74,10 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technical/">Architecture</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../nginx-config.md">NGINX Configuration</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Administration</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
                   </li>
               </ul>
               <ul>
@@ -172,8 +160,10 @@
 </code></pre>
 <p><img alt="image-20250116135914752" src="../img/screenshots/image-20250116135914752.png" /></p>
 <h3 id="prevent-leakage-of-personal-idenfier-information-leak">Prevent leakage of personal idenfier &amp; information leak</h3>
-<pre><code>⚠️ Implemented, to be documented
-</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>⚠️ Implemented, to be documented</p>
+</div>
 <pre><code class="language-bash">curl http://127.0.0.1:8080/ollama/gemma2/2b/ -i  \
 -H &quot;Authorization: Bearer your-token-here&quot; \
 -d '{
@@ -201,28 +191,30 @@ Request contains sensitive personal information
 <li><strong>Per-Model Quotas</strong>: Set usage limits for individual models to manage resource allocation.</li>
 </ul>
 <p>This granular approach allows administrators to optimize costs while maintaining flexibility and control over system resources.</p>
-<pre><code class="language-json">        {
-            &quot;provider&quot;: &quot;ollama&quot;,
-            &quot;model_name&quot;: &quot;gemma2:2b-instruct-q6_K&quot;,
-            &quot;location&quot;: &quot;/ollama/gemma2/2b/&quot;,
-            &quot;proxy_pass&quot;: &quot;http://m1:11434/api/chat&quot;,
-            &quot;api_key&quot;: &quot;NA&quot;,
-            &quot;disabled_groups&quot;: &quot;&quot;,
-            &quot;blacklist_words&quot;: &quot;confidential mycorp&quot;,
-            &quot;pii_protection_url&quot;: &quot;http://m1:8001/check-pii-base64&quot;,
-            &quot;quotas&quot;: {
-                &quot;max_tokens&quot;: {&quot;week&quot;: 100000,
-                               &quot;day&quot;: 1000,
-                               &quot;hour&quot;: 50},
-
-            }
-        }
+<pre><code class="language-yaml">models:
+  - location: &quot;/echo&quot;
+    model_name: &quot;echo&quot;
+    proxy_pass: &quot;http://localhost:9999&quot;
+    api_key: &quot;$DEEPSEEK_API_KEY&quot;
+    parser: &quot;ollama&quot;
+    disabled_groups: &quot;mammals, birds&quot;
+    blacklist_words: &quot;confidential, mycorp&quot;
+    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
+    quotas:
+      - max_tokens:
+          minute: 500
+          hour: 6000
+          day: 10000
+          week: 40000
+      - max_requests:
+          second: 1
+          minute: 15
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../screenshots/" class="btn btn-neutral float-left" title="Screenshots"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href=".." class="btn btn-neutral float-left" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../configuration/" class="btn btn-neutral float-right" title="Configuration">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
@@ -246,7 +238,7 @@ Request contains sensitive personal information
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../screenshots/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../configuration/" style="color: #fcfcfc">Next &raquo;</a></span>

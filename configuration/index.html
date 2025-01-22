@@ -51,19 +51,13 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../screenshots/">Screenshots</a>
-                </li>
-              </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../use-cases/">Use Cases</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../api-reference/">API Reference</a>
                   </li>
@@ -72,14 +66,10 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technical/">Architecture</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../nginx-config.md">NGINX Configuration</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Administration</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
                   </li>
               </ul>
               <ul>
@@ -110,7 +100,72 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Work in progress</p>
+                <h1 id="configuration-example">Configuration example</h1>
+<p>The configuration file is a YAML file that contains all the settings for the gateway.</p>
+<pre><code class="language-yaml">---
+version: 1
+threads: 3
+pid_file: /tmp/burgonet.pid
+error_log: /tmp/load_balancer_err.log
+upgrade_sock: /tmp/load_balancer.sock
+db_filepath: database.redb
+port: 6191
+host: localhost
+prometheus_host: 127.0.0.1
+prometheus_port: 6192
+
+trust_header_authentication:
+    - Tailscale-User-Login
+    - Cf-Access-Authenticated-User-Email
+    - X-Forwarded-Email
+
+models:
+  - location: &quot;/echo&quot;
+    model_name: &quot;echo&quot;
+    proxy_pass: &quot;http://localhost:9999&quot;
+    api_key: &quot;$DEEPSEEK_API_KEY&quot;
+
+  - location: &quot;/ollama/gemma2/2b/&quot;
+    model_name: &quot;gemma2:2b-instruct-q6_K&quot;
+    parser: &quot;ollama&quot;
+    proxy_pass: &quot;http://127.0.0.1:11434/api/chat&quot;
+    api_key: &quot;NA&quot;
+    disabled_groups: &quot;mammals, birds.aaa&quot;
+    blacklist_words: &quot;confidential, mycorp&quot;
+    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
+    quotas:
+      - max_tokens:
+          minute: 50000
+          hour: 60000
+          day: 1000000
+          week: 10000
+      - max_requests:
+          second: 1
+          minute: 15
+
+  - location: &quot;/llamacpp/&quot;
+    provider: &quot;llamacpp&quot;
+    model_name: &quot;phi4-GGUF-Q4_K&quot;
+    proxy_pass: &quot;http://m1:8081/completion&quot;
+
+
+  - location: &quot;/deepseek/chat/completions&quot;
+    model_name: &quot;deepseek&quot;
+    proxy_pass: &quot;https://api.deepseek.com/chat/completions&quot;
+    api_key: &quot;$DEEPSEEK_API_KEY&quot;
+
+  - location: &quot;/api.openai.com/v1/chat/completions&quot;
+    model_name: &quot;gpt4o&quot;
+    proxy_pass: &quot;https://api.openai.com&quot;
+    api_key: &quot;YOUR_API_KEY&quot;
+
+  - location: &quot;/openai.azure.com/v1/chat/completions&quot;
+    model_name: &quot;azuregpt4&quot;
+    proxy_pass: &quot;https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_ID-id/completions?api-version=2024-10-21&quot;
+    api_key: &quot;YOUR_API_KEY&quot;
+
+
+</code></pre>
               
             </div>
           </div><footer>

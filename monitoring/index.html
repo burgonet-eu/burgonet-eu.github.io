@@ -51,14 +51,6 @@
                 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
                 </li>
               </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="../screenshots/">Screenshots</a>
-                </li>
-              </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../use-cases/">Use Cases</a>
@@ -72,14 +64,28 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../technical/">Architecture</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="../nginx-config.md">NGINX Configuration</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Administration</span></p>
               <ul class="current">
                   <li class="toctree-l1 current"><a class="reference internal current" href="#">Monitoring</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../security/">Security</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#prometheus-integration">Prometheus Integration</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#available-metrics">Available Metrics</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#example-prometheus-queries">Example Prometheus Queries</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#grafana-dashboard">Grafana Dashboard</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#alerting-examples">Alerting Examples</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#best-practices">Best Practices</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
                   </li>
               </ul>
               <ul>
@@ -110,13 +116,88 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p>Work in progress</p>
+                <h1 id="monitoring-metrics">Monitoring &amp; Metrics</h1>
+<h2 id="prometheus-integration">Prometheus Integration</h2>
+<p>Burgonet Gateway provides built-in Prometheus metrics endpoint for monitoring and alerting. The metrics are exposed on the configured host and port (default: <code>127.0.0.1:6192</code>).</p>
+<h3 id="configuration">Configuration</h3>
+<p>The Prometheus endpoint can be configured in <code>conf.yml</code>:</p>
+<pre><code class="language-yaml">prometheus_host: 127.0.0.1  # Host to expose metrics on
+prometheus_port: 6192       # Port for metrics endpoint
+</code></pre>
+<h3 id="available-metrics">Available Metrics</h3>
+<p>The gateway exposes the following metrics:</p>
+<ul>
+<li><strong>burgonet_requests_total</strong> (counter): Total number of requests processed</li>
+<li><strong>burgonet_input_tokens_total</strong> (counter): Total number of input tokens processed</li>
+<li><strong>burgonet_output_tokens_total</strong> (counter): Total number of output tokens generated</li>
+</ul>
+<h3 id="example-prometheus-queries">Example Prometheus Queries</h3>
+<ol>
+<li>Requests per minute:</li>
+</ol>
+<pre><code class="language-promql">rate(burgonet_requests_total[1m])
+</code></pre>
+<ol>
+<li>Input tokens per hour:</li>
+</ol>
+<pre><code class="language-promql">rate(burgonet_input_tokens_total[1h])
+</code></pre>
+<ol>
+<li>Output tokens per day:</li>
+</ol>
+<pre><code class="language-promql">rate(burgonet_output_tokens_total[1d])
+</code></pre>
+<ol>
+<li>Token ratio (output/input):</li>
+</ol>
+<pre><code class="language-promql">burgonet_output_tokens_total / burgonet_input_tokens_total
+</code></pre>
+<h3 id="grafana-dashboard">Grafana Dashboard</h3>
+<p>A sample Grafana dashboard is available in the <code>docs/grafana</code> directory. It includes:</p>
+<ul>
+<li>Request rate over time</li>
+<li>Token usage trends</li>
+<li>Error rates</li>
+<li>System resource utilization</li>
+</ul>
+<h3 id="alerting-examples">Alerting Examples</h3>
+<ol>
+<li>High request rate alert:</li>
+</ol>
+<pre><code class="language-yaml">- alert: HighRequestRate
+  expr: rate(burgonet_requests_total[5m]) &gt; 1000
+  for: 10m
+  labels:
+    severity: critical
+  annotations:
+    summary: &quot;High request rate detected&quot;
+    description: &quot;Request rate is above 1000 req/min for 10 minutes&quot;
+</code></pre>
+<ol>
+<li>Token quota warning:</li>
+</ol>
+<pre><code class="language-yaml">- alert: TokenQuotaWarning  
+  expr: burgonet_input_tokens_total % 1000000 &gt; 900000
+  for: 5m
+  labels:
+    severity: warning
+  annotations:
+    summary: &quot;Token quota nearing limit&quot;
+    description: &quot;Token usage is over 90% of quota&quot;
+</code></pre>
+<h3 id="best-practices">Best Practices</h3>
+<ul>
+<li>Monitor request rates and token usage trends</li>
+<li>Set alerts for quota thresholds</li>
+<li>Track token ratios to detect anomalies</li>
+<li>Correlate metrics with system resource usage</li>
+</ul>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../technical/" class="btn btn-neutral float-left" title="Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../security/" class="btn btn-neutral float-right" title="Security">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../about/" class="btn btn-neutral float-right" title="About">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -142,7 +223,7 @@
       <span><a href="../technical/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../security/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../about/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

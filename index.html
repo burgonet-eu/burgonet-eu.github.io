@@ -50,33 +50,7 @@
               <ul class="current">
                 <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#quick-links">Quick Links</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#getting-started">Getting Started</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#core-features">Core Features</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#use-cases">Use Cases</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#departmental-access-control">Departmental Access Control</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#restrict-keywords">Restrict keywords</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#prevent-leakage-of-personal-idenfier-information-leak">Prevent leakage of personal idenfier &amp; information leak</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#cost-management-with-quotas">Cost Management with Quotas</a>
-    </li>
-        </ul>
-    </li>
     </ul>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="getting-started/">Getting Started</a>
-                </li>
-              </ul>
-              <ul>
-                <li class="toctree-l1"><a class="reference internal" href="screenshots/">Screenshots</a>
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
@@ -92,14 +66,10 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="technical/">Architecture</a>
                   </li>
-                  <li class="toctree-l1"><a class="" href="nginx-config.md">NGINX Configuration</a>
-                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Administration</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="monitoring/">Monitoring</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="security/">Security</a>
                   </li>
               </ul>
               <ul>
@@ -129,12 +99,30 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <p><img alt="Burgonet Gateway" src="images/logo_small.png" /></p>
-<h1 id="welcome-to-burgonet-gateway-documentation">Welcome to Burgonet Gateway Documentation</h1>
-<p>Burgonet Gateway is an enterprise LLM gateway that provides secure access and compliance controls for AI systems.</p>
-<blockquote>
-<p>⚠️ This project is still under active development</p>
-</blockquote>
+                <p align="center">
+  <img src="images/logo_small.png" alt="Burgonet Gateway">
+</p>
+
+<p><strong>AI enterprise gateway</strong> implemented in Rust 🦀 that provides secure, governed access to LLMs (Large Language Models) for 
+organizations. It acts as a single entry point for employees and projects to access both cloud-based and self-hosted AI models 
+while enforcing security, compliance, and usage controls. The software helps organizations manage AI governance by 
+providing centralized control over model access, usage tracking, and security policies.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>🔑 <strong>Token Management</strong>: Generate, view, and delete API tokens</li>
+<li>🎯 <strong>Quota Management</strong>: Set token quotas per user, group or project</li>
+<li>📊 <strong>Usage Monitoring</strong>: Real-time usage tracking and analytics</li>
+<li>🤖 <strong>Provider Management</strong>: Configure multiple LLM providers (OpenAI, Claude, DeepSeek, Ollama, etc.)</li>
+<li>⏱️ <strong>Rate Limiting</strong>: Built-in rate limiting with configurable thresholds</li>
+<li>📝 <strong>Audit Logs</strong>: Detailed logging of API requests and responses</li>
+<li>🖥️ <strong>Embedded Web UI</strong>: Built-in admin interface for configuration and monitoring</li>
+<li>🔒 <strong>PII Protection</strong>: Built-in Personally Identifiable Information detection and blocking</li>
+<li>📈 <strong>Prometheus Metrics</strong>: Built-in Prometheus endpoint for monitoring and alerting</li>
+<li>🔐 <strong>Trusted Header Authentication</strong>: Support for authentication via trusted HTTP headers</li>
+<li>🚫 <strong>Content Filtering</strong>: Block requests containing blacklisted words (e.g. "confidential")</li>
+<li>🚷 <strong>Group Access Control</strong>: Restrict access by user groups with disabled_groups configuration</li>
+</ul>
+<p>Need another feature? Don't hesitate to <a href="mailto:sebastien.campion@foss4.eu">send an email</a> or <a href="https://github.com/burgonet-eu/gateway/issues">create a GitHub ticket</a>!</p>
 <h2 id="quick-links">Quick Links</h2>
 <ul>
 <li><a href="#getting-started">Getting Started</a></li>
@@ -144,23 +132,12 @@
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#api-reference">API Reference</a></li>
 </ul>
-<h2 id="getting-started">Getting Started</h2>
-<p>Learn how to set up and configure Burgonet Gateway for your organization.</p>
-<h2 id="core-features">Core Features</h2>
-<ul>
-<li><strong>Access Control</strong>: Granular permissions for users and groups</li>
-<li><strong>Quota Management</strong>: Set usage limits per user/group</li>
-<li><strong>Content Filtering</strong>: PII detection and keyword blocking</li>
-<li><strong>Audit Logging</strong>: Detailed request/response tracking</li>
-<li><strong>Multi-Provider Support</strong>: [⚠️ work in progress]<ul class="task-list">
-<li class="task-list-item"><input type="checkbox" disabled checked/> DeepSeek</li>
-<li class="task-list-item"><input type="checkbox" disabled checked/> Ollama</li>
-<li class="task-list-item"><input type="checkbox" disabled/> OpenAI</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Azure</li>
-<li class="task-list-item"><input type="checkbox" disabled/> Bedrock</li>
-</ul>
-</li>
-</ul>
+<h2 id="quickstart">Quickstart</h2>
+<p>Download the binary in the <a href="https://github.com/burgonet-eu/gateway/releases/">packages</a> and the configuration file <a href="https://github.com/burgonet-eu/gateway/blob/main/conf.yml">conf.yml</a> file,  run it :</p>
+<pre><code>./burgonet-gw -c conf.yml
+</code></pre>
+<p>Open in your browser the URL <a href="http://127.0.0.1:6189/">http://127.0.0.1:6189/</a></p>
+<p><img alt="Screenshot" src="images/screenshot.png" /></p>
 <h2 id="use-cases">Use Cases</h2>
 <p>Explore common scenarios and configurations:</p>
 <ul>
@@ -213,8 +190,10 @@
 </code></pre>
 <p><img alt="image-20250116135914752" src="img/screenshots/image-20250116135914752.png" /></p>
 <h3 id="prevent-leakage-of-personal-idenfier-information-leak">Prevent leakage of personal idenfier &amp; information leak</h3>
-<pre><code>⚠️ Implemented, to be documented
-</code></pre>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>⚠️ Implemented, to be documented</p>
+</div>
 <pre><code class="language-bash">curl http://127.0.0.1:8080/ollama/gemma2/2b/ -i  \
 -H &quot;Authorization: Bearer your-token-here&quot; \
 -d '{
@@ -242,28 +221,30 @@ Request contains sensitive personal information
 <li><strong>Per-Model Quotas</strong>: Set usage limits for individual models to manage resource allocation.</li>
 </ul>
 <p>This granular approach allows administrators to optimize costs while maintaining flexibility and control over system resources.</p>
-<pre><code class="language-json">        {
-            &quot;provider&quot;: &quot;ollama&quot;,
-            &quot;model_name&quot;: &quot;gemma2:2b-instruct-q6_K&quot;,
-            &quot;location&quot;: &quot;/ollama/gemma2/2b/&quot;,
-            &quot;proxy_pass&quot;: &quot;http://m1:11434/api/chat&quot;,
-            &quot;api_key&quot;: &quot;NA&quot;,
-            &quot;disabled_groups&quot;: &quot;&quot;,
-            &quot;blacklist_words&quot;: &quot;confidential mycorp&quot;,
-            &quot;pii_protection_url&quot;: &quot;http://m1:8001/check-pii-base64&quot;,
-            &quot;quotas&quot;: {
-                &quot;max_tokens&quot;: {&quot;week&quot;: 100000,
-                               &quot;day&quot;: 1000,
-                               &quot;hour&quot;: 50},
-
-            }
-        }
+<pre><code class="language-yaml">models:
+  - location: &quot;/echo&quot;
+    model_name: &quot;echo&quot;
+    proxy_pass: &quot;http://localhost:9999&quot;
+    api_key: &quot;$DEEPSEEK_API_KEY&quot;
+    parser: &quot;ollama&quot;
+    disabled_groups: &quot;mammals, birds&quot;
+    blacklist_words: &quot;confidential, mycorp&quot;
+    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
+    quotas:
+      - max_tokens:
+          minute: 500
+          hour: 6000
+          day: 10000
+          week: 40000
+      - max_requests:
+          second: 1
+          minute: 15
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="getting-started/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="use-cases/" class="btn btn-neutral float-right" title="Use Cases">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -287,7 +268,7 @@ Request contains sensitive personal information
     
     
     
-      <span><a href="getting-started/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="use-cases/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -307,5 +288,5 @@ Request contains sensitive personal information
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-01-17 11:53:09.570769+00:00
+Build Date UTC : 2025-01-22 14:23:09.815768+00:00
 -->
