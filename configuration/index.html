@@ -61,6 +61,8 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../api-reference/">API Reference</a>
                   </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../chat-interface/">Chat Interface</a>
+                  </li>
               </ul>
               <p class="caption"><span class="caption-text">Technical Documentation</span></p>
               <ul>
@@ -110,9 +112,15 @@ error_log: /tmp/load_balancer_err.log
 upgrade_sock: /tmp/load_balancer.sock
 db_filepath: database.redb
 port: 6191
-host: localhost
+host: 127.0.0.1
 prometheus_host: 127.0.0.1
 prometheus_port: 6192
+admin_host: 127.0.0.1
+admin_port: 6189
+chat_host: 127.0.0.1
+chat_port: 6190
+echo_host: 127.0.0.1
+echo_port: 6193
 
 trust_header_authentication:
     - Tailscale-User-Login
@@ -122,7 +130,8 @@ trust_header_authentication:
 models:
   - location: &quot;/echo&quot;
     model_name: &quot;echo&quot;
-    proxy_pass: &quot;http://localhost:9999&quot;
+    proxy_pass: &quot;http://127.0.0.1:6193/echo&quot;
+    parser: &quot;echo&quot;
     api_key: &quot;$DEEPSEEK_API_KEY&quot;
 
   - location: &quot;/ollama/gemma2/2b/&quot;
@@ -130,7 +139,16 @@ models:
     parser: &quot;ollama&quot;
     proxy_pass: &quot;http://127.0.0.1:11434/api/chat&quot;
     api_key: &quot;NA&quot;
-    disabled_groups: &quot;mammals, birds.aaa&quot;
+    disabled_groups: &quot;mammals, birds&quot;
+    blacklist_words: &quot;confidential, mycorp&quot;
+    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
+
+  - location: &quot;/quotas/test&quot;
+    model_name: &quot;gemma2:2b-instruct-q6_K&quot;
+    parser: &quot;ollama&quot;
+    proxy_pass: &quot;http://127.0.0.1:11434/api/chat&quot;
+    api_key: &quot;NA&quot;
+    disabled_groups: &quot;mammals, birds&quot;
     blacklist_words: &quot;confidential, mycorp&quot;
     pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
     quotas:
@@ -148,9 +166,15 @@ models:
     model_name: &quot;phi4-GGUF-Q4_K&quot;
     proxy_pass: &quot;http://m1:8081/completion&quot;
 
+  - location: &quot;/api.openai.com/v1/chat/completions&quot;
+    model_name: &quot;openai&quot;
+    parser: &quot;openai&quot;
+    proxy_pass: &quot;https://api.openai.com/v1/chat/completions&quot;
+    api_key: &quot;$OPENAI_API_KEY&quot;
 
-  - location: &quot;/deepseek/chat/completions&quot;
-    model_name: &quot;deepseek&quot;
+  - location: &quot;/api.deepseek.com/chat/completions&quot;
+    model_name: &quot;deepseek-chat&quot;
+    parser: &quot;deepseek&quot;
     proxy_pass: &quot;https://api.deepseek.com/chat/completions&quot;
     api_key: &quot;$DEEPSEEK_API_KEY&quot;
 

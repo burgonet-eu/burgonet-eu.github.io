@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>About - Burgonet Gateway Documentation</title>
+    <title>Chat Interface - Burgonet Gateway Documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "About";
-        var mkdocs_page_input_path = "about.md";
+        var mkdocs_page_name = "Chat Interface";
+        var mkdocs_page_input_path = "chat-interface.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,14 +52,28 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../use-cases/">Use Cases</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../api-reference/">API Reference</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../chat-interface/">Chat Interface</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Chat Interface</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#features">Features</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#accessing-the-chat-interface">Accessing the Chat Interface</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#interface-components">Interface Components</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#configuration">Configuration</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#keyboard-shortcuts">Keyboard Shortcuts</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#troubleshooting">Troubleshooting</a>
+    </li>
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Technical Documentation</span></p>
@@ -72,16 +86,8 @@
                   <li class="toctree-l1"><a class="reference internal" href="../monitoring/">Monitoring</a>
                   </li>
               </ul>
-              <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href="#">About</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#license">License</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#enterprise-support">Enterprise Support</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#copyright">Copyright</a>
-    </li>
-    </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="../about/">About</a>
                 </li>
               </ul>
       </div>
@@ -98,7 +104,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-      <li class="breadcrumb-item active">About</li>
+          <li class="breadcrumb-item">User Guide</li>
+      <li class="breadcrumb-item active">Chat Interface</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -107,34 +114,85 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="about-burgonet">About Burgonet</h1>
-<h2 id="license">License</h2>
-<p>Burgonet is provided under the <a href="LICENSE">Commons Clause License Condition v1.0</a> which allows free non-production use.</p>
-<p>The license includes these key terms:</p>
+                <h1 id="chat-interface">Chat Interface</h1>
+<p>The Burgonet Gateway provides a web-based chat interface for interacting with supported LLM models.</p>
+<p><img alt="Chat Interface" src="../images/chat-interface.png" /></p>
+<h2 id="features">Features</h2>
 <ul>
-<li>Free use for non-production purposes</li>
-<li>Commercial use requires a separate license</li>
-<li>No right to sell the software or services derived from it</li>
-<li>Attribution requirements</li>
+<li>🗨️ <strong>Conversation History</strong>: View and manage past conversations</li>
+<li>🤖 <strong>Model Selection</strong>: Choose from available LLM models</li>
+<li>🔑 <strong>Token Management</strong>: Set and save API tokens</li>
+<li>🌐 <strong>Server Configuration</strong>: Configure gateway URL</li>
+<li>📝 <strong>Message Formatting</strong>: Supports markdown and code blocks</li>
+<li>⏱️ <strong>Real-time Responses</strong>: Streamed responses for fast interaction</li>
 </ul>
-<h2 id="enterprise-support">Enterprise Support</h2>
-<p>For production deployments or commercial use, enterprise licenses and support packages are available. These include:</p>
+<h2 id="accessing-the-chat-interface">Accessing the Chat Interface</h2>
+<p>The chat interface is available at:</p>
+<pre><code>http://&lt;chat_host&gt;:&lt;chat_port&gt;
+</code></pre>
+<p>Default values:
+- Host: <code>127.0.0.1</code>
+- Port: <code>6190</code></p>
+<h2 id="interface-components">Interface Components</h2>
+<ol>
+<li>
+<p><strong>Navigation Bar</strong></p>
 <ul>
-<li>Production deployment rights</li>
-<li>Priority support</li>
-<li>Custom feature development</li>
-<li>Security audits</li>
-<li>Compliance consulting</li>
+<li>Gateway URL configuration</li>
+<li>API Token input</li>
+<li>Save button</li>
 </ul>
-<p>Contact <a href="mailto:sebastien.campion@foss4.eu">sebastien.campion@foss4.eu</a> to discuss licensing options and enterprise support.</p>
-<h2 id="copyright">Copyright</h2>
-<p>Copyright (c) 2025 Sébastien Campion, FOSS4. All rights reserved.</p>
-<p>The software follows <a href="https://faircode.io">Fair-code</a> principles, balancing open access with sustainable development.</p>
+</li>
+<li>
+<p><strong>Sidebar</strong></p>
+<ul>
+<li>New Chat button</li>
+<li>Conversation history list</li>
+</ul>
+</li>
+<li>
+<p><strong>Chat Window</strong></p>
+<ul>
+<li>Message display area</li>
+<li>User and assistant messages</li>
+</ul>
+</li>
+<li>
+<p><strong>Input Area</strong></p>
+<ul>
+<li>Model selection dropdown</li>
+<li>Message input field</li>
+<li>Send button</li>
+</ul>
+</li>
+</ol>
+<h2 id="configuration">Configuration</h2>
+<p>The chat interface can be configured in <code>conf.yml</code>:</p>
+<pre><code class="language-yaml">chat_host: 127.0.0.1  # Host to serve chat interface
+chat_port: 6190       # Port for chat interface
+</code></pre>
+<h2 id="keyboard-shortcuts">Keyboard Shortcuts</h2>
+<ul>
+<li><strong>Enter</strong>: Send message (without shift)</li>
+<li><strong>Shift+Enter</strong>: New line in message input</li>
+<li><strong>Ctrl+Enter</strong>: Send message (alternative)</li>
+<li><strong>Esc</strong>: Clear message input</li>
+</ul>
+<h2 id="troubleshooting">Troubleshooting</h2>
+<p><strong>Issue</strong>: Chat interface not loading
+- Verify chat service is running
+- Check firewall settings for chat port
+- Confirm correct gateway URL in navigation bar</p>
+<p><strong>Issue</strong>: Messages not sending
+- Verify API token is valid
+- Check model selection
+- Confirm gateway is running and accessible</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../monitoring/" class="btn btn-neutral float-left" title="Monitoring"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../api-reference/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../technical/" class="btn btn-neutral float-right" title="Architecture">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -157,8 +215,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../monitoring/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../api-reference/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
+    
+      <span><a href="../technical/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
