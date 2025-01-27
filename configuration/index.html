@@ -133,6 +133,7 @@ models:
     proxy_pass: &quot;http://127.0.0.1:6193/echo&quot;
     parser: &quot;echo&quot;
     api_key: &quot;$DEEPSEEK_API_KEY&quot;
+    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
 
   - location: &quot;/ollama/gemma2/2b/&quot;
     model_name: &quot;gemma2:2b-instruct-q6_K&quot;
