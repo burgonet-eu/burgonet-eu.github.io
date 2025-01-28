@@ -5,15 +5,15 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Configuration - Burgonet Gateway Documentation</title>
+    <title>Features - Burgonet Gateway Documentation</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Configuration";
-        var mkdocs_page_input_path = "configuration.md";
+        var mkdocs_page_name = "Features";
+        var mkdocs_page_input_path = "features.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,12 +52,10 @@
                 </li>
               </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../use-cases/">Use Cases</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Configuration</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../configuration/">Configuration</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../api-reference/">API Reference</a>
                   </li>
@@ -65,10 +63,12 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Technical Documentation</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../technical/">Architecture</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../features/">Features</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Features</a>
+    <ul class="current">
+    </ul>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Administration</span></p>
@@ -94,8 +94,8 @@
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
-          <li class="breadcrumb-item">User Guide</li>
-      <li class="breadcrumb-item active">Configuration</li>
+          <li class="breadcrumb-item">Technical Documentation</li>
+      <li class="breadcrumb-item active">Features</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -104,103 +104,19 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="configuration-example">Configuration example</h1>
-<p>The configuration file is a YAML file that contains all the settings for the gateway.</p>
-<pre><code class="language-yaml">---
-version: 1
-threads: 3
-pid_file: /tmp/burgonet.pid
-error_log: /tmp/load_balancer_err.log
-upgrade_sock: /tmp/load_balancer.sock
-db_filepath: database.redb
-port: 6191
-host: 127.0.0.1
-prometheus_host: 127.0.0.1
-prometheus_port: 6192
-admin_host: 127.0.0.1
-admin_port: 6189
-chat_host: 127.0.0.1
-chat_port: 6190
-echo_host: 127.0.0.1
-echo_port: 6193
-
-log_config_file: log4rs.yml
-
-trust_header_authentication:
-    - Tailscale-User-Login
-    - Cf-Access-Authenticated-User-Email
-    - X-Forwarded-Email
-
-models:
-  - location: &quot;/echo&quot;
-    model_name: &quot;echo&quot;
-    proxy_pass: &quot;http://127.0.0.1:6193/echo&quot;
-    parser: &quot;echo&quot;
-    api_key: &quot;$DEEPSEEK_API_KEY&quot;
-    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
-
-  - location: &quot;/ollama/gemma2/2b/&quot;
-    model_name: &quot;gemma2:2b-instruct-q6_K&quot;
-    parser: &quot;ollama&quot;
-    proxy_pass: &quot;http://127.0.0.1:11434/api/chat&quot;
-    api_key: &quot;NA&quot;
-    disabled_groups: &quot;mammals, birds&quot;
-    blacklist_words: &quot;confidential, mycorp&quot;
-    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
-
-  - location: &quot;/quotas/test&quot;
-    model_name: &quot;gemma2:2b-instruct-q6_K&quot;
-    parser: &quot;ollama&quot;
-    proxy_pass: &quot;http://127.0.0.1:11434/api/chat&quot;
-    api_key: &quot;NA&quot;
-    disabled_groups: &quot;mammals, birds&quot;
-    blacklist_words: &quot;confidential, mycorp&quot;
-    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
-    quotas:
-      - max_tokens:
-          minute: 50000
-          hour: 60000
-          day: 1000000
-          week: 10000
-      - max_requests:
-          second: 1
-          minute: 15
-
-  - location: &quot;/llamacpp/&quot;
-    provider: &quot;llamacpp&quot;
-    model_name: &quot;phi4-GGUF-Q4_K&quot;
-    proxy_pass: &quot;http://m1:8081/completion&quot;
-
-  - location: &quot;/api.openai.com/v1/chat/completions&quot;
-    model_name: &quot;openai&quot;
-    parser: &quot;openai&quot;
-    proxy_pass: &quot;https://api.openai.com/v1/chat/completions&quot;
-    api_key: &quot;$OPENAI_API_KEY&quot;
-
-  - location: &quot;/api.deepseek.com/chat/completions&quot;
-    model_name: &quot;deepseek-chat&quot;
-    parser: &quot;deepseek&quot;
-    proxy_pass: &quot;https://api.deepseek.com/chat/completions&quot;
-    api_key: &quot;$DEEPSEEK_API_KEY&quot;
-
-  - location: &quot;/api.openai.com/v1/chat/completions&quot;
-    model_name: &quot;gpt4o&quot;
-    proxy_pass: &quot;https://api.openai.com&quot;
-    api_key: &quot;YOUR_API_KEY&quot;
-
-  - location: &quot;/openai.azure.com/v1/chat/completions&quot;
-    model_name: &quot;azuregpt4&quot;
-    proxy_pass: &quot;https://YOUR_RESOURCE_NAME.openai.azure.com/openai/deployments/YOUR_DEPLOYMENT_ID-id/completions?api-version=2024-10-21&quot;
-    api_key: &quot;YOUR_API_KEY&quot;
-
-
+                <h2 id="audit-log">Audit log</h2>
+<p>Each exchange with the gateway is logged in a structured format. The logs are written to the standard output and can be redirected to a file or a log collector.
+Here is an example of a log entry:</p>
+<pre><code class="language-txt">2025-01-28T15:05:14.454037+01:00 INFO audit - df7f3c96-a4f6-4382-8a8a-b36ff13978bb User Some(&quot;alice&quot;) accessed location /ollama/gemma2/2b/
+2025-01-28T15:05:14.454818+01:00 INFO audit - df7f3c96-a4f6-4382-8a8a-b36ff13978bb Request ### {  &quot;model&quot;: &quot;gemma2:2b-instruct-q6_K&quot;,                                     &gt;
+2025-01-28T15:05:14.962724+01:00 INFO audit - df7f3c96-a4f6-4382-8a8a-b36ff13978bb Response ### {&quot;created_at&quot;:&quot;2025-01-28T14:05:14.960232Z&quot;,&quot;done&quot;:true,&quot;done_reason&quot;:&quot;sto&gt;
 </code></pre>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../use-cases/" class="btn btn-neutral float-left" title="Use Cases"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../api-reference/" class="btn btn-neutral float-right" title="API Reference">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../technical/" class="btn btn-neutral float-left" title="Architecture"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../monitoring/" class="btn btn-neutral float-right" title="Monitoring">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -223,10 +139,10 @@ models:
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../use-cases/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../technical/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../api-reference/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../monitoring/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
