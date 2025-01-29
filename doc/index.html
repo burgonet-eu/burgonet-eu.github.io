@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
+      <link rel="shortcut icon" href="img/favicon.ico" />
+    <title>Burgonet Gateway Documentation</title>
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "Home";
+        var mkdocs_page_input_path = "index.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
+      <script async src="https://www.googletagmanager.com/gtag/js?id=GTM-TSWFRGBR"></script>
+      <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', "GTM-TSWFRGBR");
+      </script>
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href="." class="icon icon-home"> Burgonet Gateway Documentation
+        </a><div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="./search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul class="current">
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
+    <ul class="current">
+    </ul>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">User Guide</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="use-cases/">Use Cases</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="configuration/">Configuration</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="api-reference/">API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="chat-interface/">Chat Interface</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Technical Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="technical/">Architecture</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="features/">Features</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Administration</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="monitoring/">Monitoring</a>
+                  </li>
+              </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="about/">About</a>
+                </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href=".">Burgonet Gateway Documentation</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <p align="center">
+  <img src="images/logo_small.png" alt="Burgonet Gateway">
+</p>
+
+<p><strong>AI enterprise gateway</strong> implemented in Rust 🦀 that provides secure, governed access to LLMs (Large Language Models) for 
+organizations. It acts as a single entry point for employees and projects to access both cloud-based and self-hosted AI models 
+while enforcing security, compliance, and usage controls. The software helps organizations manage AI governance by 
+providing centralized control over model access, usage tracking, and security policies.</p>
+<h2 id="features">Features</h2>
+<ul>
+<li>🔑 <strong>Token Management</strong>: Generate, view, and delete API tokens</li>
+<li>🎯 <strong>Quota Management</strong>: Set token quotas per user, group or project</li>
+<li>📊 <strong>Usage Monitoring</strong>: Real-time usage tracking and analytics</li>
+<li>🤖 <strong>Provider Management</strong>: Configure multiple LLM providers (OpenAI, Claude, DeepSeek, Ollama, etc.)</li>
+<li>⏱️ <strong>Rate Limiting</strong>: Built-in rate limiting with configurable thresholds</li>
+<li>📝 <strong>Audit Logs</strong>: Detailed logging of API requests and responses</li>
+<li>🖥️ <strong>Embedded Web UI</strong>: Built-in admin interface for configuration and monitoring</li>
+<li>🔒 <strong>PII Protection</strong>: Built-in Personally Identifiable Information detection and blocking</li>
+<li>📈 <strong>Prometheus Metrics</strong>: Built-in Prometheus endpoint for monitoring and alerting</li>
+<li>🔐 <strong>Trusted Header Authentication</strong>: Support for authentication via trusted HTTP headers</li>
+<li>🚫 <strong>Content Filtering</strong>: Block requests containing blacklisted words (e.g. "confidential")</li>
+<li>🚷 <strong>Group Access Control</strong>: Restrict access by user groups with disabled_groups configuration</li>
+</ul>
+<p>Need another feature? Don't hesitate to <a href="mailto:sebastien.campion@foss4.eu">send an email</a> or <a href="https://github.com/burgonet-eu/gateway/issues">create a GitHub ticket</a>!</p>
+<h2 id="quick-links">Quick Links</h2>
+<ul>
+<li><a href="#getting-started">Getting Started</a></li>
+<li><a href="#core-features">Core Features</a></li>
+<li><a href="#use-cases">Use Cases</a></li>
+<li><a href="#technical-architecture">Technical Architecture</a></li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#api-reference">API Reference</a></li>
+</ul>
+<h2 id="quickstart">Quickstart</h2>
+<p>Download the binary in the <a href="https://github.com/burgonet-eu/gateway/releases/">packages</a> and the configuration file <a href="https://github.com/burgonet-eu/gateway/blob/main/conf.yml">conf.yml</a> file,  run it :</p>
+<pre><code>./burgonet-gw -c conf.yml
+</code></pre>
+<p>To access the administration web application, open the following URL in your browser : <a href="http://127.0.0.1:6189/">http://127.0.0.1:6189/</a></p>
+<p><img alt="Screenshot" src="images/screenshot.png" /></p>
+<p>When you have created you token, you can test it via the convenience chat web app embedded, open the following URL in your browser: <a href="http://127.0.0.1:6190/">http://127.0.0.1:6190/</a>
+configure the the server url (default port is 6191) and your token: </p>
+<p><img alt="Chat Web UI" src="images/chat-interface.png" /></p>
+<h2 id="use-cases">Use Cases</h2>
+<p>Explore common scenarios and configurations:</p>
+<ul>
+<li><a href="#departmental-access-control">Departmental Access Control</a></li>
+<li><a href="#cost-management">Cost Management with Quotas</a></li>
+<li><a href="#data-leakage-prevention">Preventing Data Leakage</a></li>
+</ul>
+<h3 id="departmental-access-control">Departmental Access Control</h3>
+<p>Let's consider an organization with three departments:</p>
+<table>
+<thead>
+<tr>
+<th>Department</th>
+<th>Access Level</th>
+<th>Restrictions</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>IT</td>
+<td>All models</td>
+<td>Quotas &amp; rate limits</td>
+</tr>
+<tr>
+<td>Finance</td>
+<td>Self-hosted only</td>
+<td>No external models</td>
+</tr>
+<tr>
+<td>HR</td>
+<td>All models</td>
+<td>Unlimited budget</td>
+</tr>
+</tbody>
+</table>
+<p><img alt="overview" src="images/overview.png" /></p>
+<ul>
+<li>Alice works in the IT Department</li>
+<li>Bob works in the Finance Department</li>
+<li>Charlie works in the Human Resources Department</li>
+</ul>
+<p>The organization's governance rules are configured as follows:</p>
+<ul>
+<li>The IT Department has access to all models, with quotas and rate limits</li>
+<li>The Finance Department does not have access to external models only self-hosted.</li>
+<li>The Human Resources Department has access to all models with unlimited budget</li>
+</ul>
+<h3 id="restrict-keywords">Restrict keywords</h3>
+<pre><code>⚠️ Implemented, to be documented
+</code></pre>
+<p><img alt="image-20250116135914752" src="img/screenshots/image-20250116135914752.png" /></p>
+<h3 id="prevent-leakage-of-personal-idenfier-information-leak">Prevent leakage of personal idenfier &amp; information leak</h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>⚠️ Implemented, to be documented</p>
+</div>
+<pre><code class="language-bash">curl http://127.0.0.1:8080/ollama/gemma2/2b/ -i  \
+-H &quot;Authorization: Bearer your-token-here&quot; \
+-d '{
+  &quot;model&quot;: &quot;gemma2:2b-instruct-q6_K&quot;,                                                                                                                        &quot;messages&quot;: [
+    {
+      &quot;role&quot;: &quot;user&quot;,
+      &quot;content&quot;: &quot;Hi my name is Jean-Claude Dusse&quot;
+    }
+  ] ,
+  &quot;stream&quot;: false
+}'
+HTTP/1.1 403 Forbidden
+Server: openresty/1.21.4.1
+Date: Thu, 16 Jan 2025 13:01:06 GMT
+Content-Type: text/plain
+Transfer-Encoding: chunked
+Connection: keep-alive
+
+Request contains sensitive personal information
+</code></pre>
+<h3 id="cost-management-with-quotas">Cost Management with Quotas</h3>
+<p>Administrators can effectively control costs by configuring <strong>quotas</strong> for model usage and user access.</p>
+<p><strong>Key Features:</strong></p>
+<ul>
+<li><strong>Per-Model Quotas</strong>: Set usage limits for individual models to manage resource allocation.</li>
+</ul>
+<p>This granular approach allows administrators to optimize costs while maintaining flexibility and control over system resources.</p>
+<pre><code class="language-yaml">models:
+  - location: &quot;/echo&quot;
+    model_name: &quot;echo&quot;
+    proxy_pass: &quot;http://localhost:9999&quot;
+    api_key: &quot;$DEEPSEEK_API_KEY&quot;
+    parser: &quot;ollama&quot;
+    disabled_groups: &quot;mammals, birds&quot;
+    blacklist_words: &quot;confidential, mycorp&quot;
+    pii_protection_url: &quot;http://127.0.0.1:8001/check-pii-base64&quot;
+    quotas:
+      - max_tokens:
+          minute: 500
+          hour: 6000
+          day: 10000
+          week: 40000
+      - max_requests:
+          second: 1
+          minute: 15
+</code></pre>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="use-cases/" class="btn btn-neutral float-right" title="Use Cases">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+    
+      <span><a href="use-cases/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+      <script src="search/main.js"></script>
+    <script>
+        jQuery(function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        });
+    </script>
+
+</body>
+</html>
+
+<!--
+MkDocs version : 1.6.1
+Build Date UTC : 2025-01-28 14:20:52.061156+00:00
+-->
