@@ -47,6 +47,10 @@
 <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
 </li>
 </ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting-started/">Getting Started</a>
+</li>
+</ul>
 <p class="caption"><span class="caption-text">User Guide</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../use-cases/">Use Cases</a>
@@ -146,24 +150,24 @@ prometheus_port: 6192  # Metrics endpoint
 </code></pre>
 <h2 id="request-flow">Request Flow</h2>
 <div class="mermaid">sequenceDiagram
-    participant User
-    participant Gateway
-    participant Database
-    participant Provider
+    participant 🤓 User
+    participant 🛡️ Gateway
+    participant 💿 Database
+    participant 💬 Provider
 
-    User-&gt;&gt;Gateway: API Request
-    Gateway-&gt;&gt;Database: Validate token
-    Database--&gt;&gt;Gateway: Token status
-    Gateway-&gt;&gt;Gateway: Check rate limits
-    Gateway-&gt;&gt;Gateway: Check token quotas
-    Gateway-&gt;&gt;Gateway: Verify group access
-    Gateway-&gt;&gt;Gateway: Scan for PII
-    Gateway-&gt;&gt;Gateway: Check blacklisted words
-    Gateway-&gt;&gt;Provider: Forward request
-    Provider--&gt;&gt;Gateway: Response
-    Gateway-&gt;&gt;Database: Log usage metrics
-    Gateway-&gt;&gt;Prometheus: Export metrics
-    Gateway--&gt;&gt;User: Return response
+    🤓 User-&gt;&gt;🛡️ Gateway: API Request
+    🛡️ Gateway-&gt;&gt;💿 Database: Validate token
+    💿 Database--&gt;&gt;🛡️ Gateway: Token status
+    🛡️ Gateway-&gt;&gt;🛡️ Gateway: Check rate limits
+    🛡️ Gateway-&gt;&gt;🛡️ Gateway: Check token quotas
+    🛡️ Gateway-&gt;&gt;🛡️ Gateway: Verify group access
+    🛡️ Gateway-&gt;&gt;🛡️ Gateway: Scan for PII
+    🛡️ Gateway-&gt;&gt;🛡️ Gateway: Check blacklisted words
+    🛡️ Gateway-&gt;&gt;🛡️ Gateway: Forward request
+    💬 Provider--&gt;&gt;🛡️ Gateway: Response
+    🛡️ Gateway-&gt;&gt;💿 Database: Log usage metrics
+    🛡️ Gateway-&gt;&gt;Prometheus: Export metrics
+    🛡️ Gateway--&gt;&gt;🤓 User: Return response
 </div>
 </div>
 </div><footer>

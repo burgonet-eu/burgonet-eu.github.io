@@ -53,6 +53,10 @@
     </ul>
                 </li>
               </ul>
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="getting-started/">Getting Started</a>
+                </li>
+              </ul>
               <p class="caption"><span class="caption-text">User Guide</span></p>
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="use-cases/">Use Cases</a>
@@ -104,7 +108,7 @@
             <div class="section" itemprop="articleBody">
               
                 <p align="center">
-  <img src="images/logo_small.png" alt="Burgonet Gateway">
+  <img src="images/logo_draw_name_alpha.png" alt="Burgonet Gateway" style="width: 30%">
 </p>
 
 <p><strong>AI enterprise gateway</strong> implemented in Rust 🦀 that provides secure, governed access to LLMs (Large Language Models) for 
@@ -125,6 +129,8 @@ providing centralized control over model access, usage tracking, and security po
 <li>🔐 <strong>Trusted Header Authentication</strong>: Support for authentication via trusted HTTP headers</li>
 <li>🚫 <strong>Content Filtering</strong>: Block requests containing blacklisted words (e.g. "confidential")</li>
 <li>🚷 <strong>Group Access Control</strong>: Restrict access by user groups with disabled_groups configuration</li>
+<li>📝 Audit Logs: Detailed logging of API requests and responses</li>
+<li>💾 Audit Storage: Persistent storage of all gateway exchanges with configurable retention periods</li>
 </ul>
 <p>Need another feature? Don't hesitate to <a href="mailto:sebastien.campion@foss4.eu">send an email</a> or <a href="https://github.com/burgonet-eu/gateway/issues">create a GitHub ticket</a>!</p>
 <h2 id="quick-links">Quick Links</h2>
@@ -136,16 +142,25 @@ providing centralized control over model access, usage tracking, and security po
 <li><a href="#configuration">Configuration</a></li>
 <li><a href="#api-reference">API Reference</a></li>
 </ul>
-<h2 id="quickstart">Quickstart</h2>
-<p>Download the binary in the <a href="https://github.com/burgonet-eu/gateway/releases/">packages</a> and the configuration file <a href="https://github.com/burgonet-eu/gateway/blob/main/conf.yml">conf.yml</a> file,  run it :</p>
-<pre><code>./burgonet-gw -c conf.yml
+<h1 id="getting-started">Getting Started</h1>
+<p>This guide will walk you through the process of setting up and using the Burgonet Gateway.</p>
+<h2 id="installation">Installation</h2>
+<ol>
+<li><strong>Download:</strong> Download the appropriate binary for your operating system from the <a href="https://github.com/burgonet-eu/gateway/releases">releases page</a>.</li>
+<li><strong>Configuration:</strong> Download the default configuration file <a href="https://raw.githubusercontent.com/burgonet-eu/gateway/refs/heads/main/conf.yml">conf.yml</a></li>
+<li><strong>Run:</strong> Execute the binary using the following command, replacing <code>&lt;path/to/conf.yml&gt;</code> with the actual path to your configuration file:</li>
+</ol>
+<pre><code class="language-bash">./burgonet-gw -c &lt;path/to/conf.yml&gt;
 </code></pre>
-<p>To access the administration web application, open the following URL in your browser : <a href="http://127.0.0.1:6189/">http://127.0.0.1:6189/</a></p>
+<h2 id="accessing-the-web-ui">Accessing the Web UI</h2>
+<p>Once the gateway is running, you can access the administration web UI at:
+<a href="http://127.0.0.1:6189/">http://127.0.0.1:6189/</a></p>
 <p><img alt="Screenshot" src="images/screenshot.png" /></p>
-<p>When you have created you token, you can test it via the convenience chat web app embedded, open the following URL in your browser: <a href="http://127.0.0.1:6190/">http://127.0.0.1:6190/</a>
+<p>When you have created your token, you can test it via the convenience chat web app embedded, open the following URL in your browser:</p>
+<p><a href="http://127.0.0.1:6190/">http://127.0.0.1:6190/</a>
 configure the the server url (default port is 6191) and your token: </p>
 <p><img alt="Chat Web UI" src="images/chat-interface.png" /></p>
-<h2 id="use-cases">Use Cases</h2>
+<h1 id="use-cases">Use Cases</h1>
 <p>Explore common scenarios and configurations:</p>
 <ul>
 <li><a href="#departmental-access-control">Departmental Access Control</a></li>
@@ -251,7 +266,7 @@ Request contains sensitive personal information
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="use-cases/" class="btn btn-neutral float-right" title="Use Cases">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="getting-started/" class="btn btn-neutral float-right" title="Getting Started">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -275,7 +290,7 @@ Request contains sensitive personal information
     
     
     
-      <span><a href="use-cases/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="getting-started/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
@@ -295,5 +310,5 @@ Request contains sensitive personal information
 
 <!--
 MkDocs version : 1.6.1
-Build Date UTC : 2025-01-28 14:20:52.061156+00:00
+Build Date UTC : 2025-01-29 13:45:25.915798+00:00
 -->
